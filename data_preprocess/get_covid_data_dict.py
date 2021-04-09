@@ -2,8 +2,8 @@ import csv
 import os
 import pickle
 
-data_root_dir = './covid-chestxray-dataset-master'
-image_root_dir = './covid-chestxray-dataset-master/images'
+data_root_dir = './original data/covid-chestxray-dataset-master'
+image_root_dir = './original data/covid-chestxray-dataset-master/images'
 info_file_name = 'metadata.csv'
 
 info_path = os.path.join(data_root_dir, info_file_name)
@@ -20,8 +20,9 @@ x2 = 0
 x3 = 0
 n_ct = 0
 n_ards = 0
-with open(info_path,'r') as f:
+with open(info_path,'r', encoding='utf-8') as f:
   csv_reader = csv.reader(f)
+  print('here')
   i = 0 
   for row in csv_reader:
     if i == 0:
@@ -120,13 +121,14 @@ print (y0, y1, y2, y3)
 print (z0, z1, z2, z3)
 print (v0, v1, v2, v3)
 print (w0, w1, w2, w3)
-#pickle.dump(data_dict, open('./data_preprocess/formal_covid_dict_ap.pkl','wb'))
-##pickle.dump(pa_list, open('pa_list.pkl','wb'))
-###saved_path = './data_preprocess/formal_covid_dict.pkl'
-###if os.path.exists(saved_path):
-###  os.remove(saved_path)
-###pickle.dump(data_dict, open(saved_path,'wb'))
-###print ('finish')
+
+pickle.dump(data_dict, open('./data_preprocess/formal_covid_dict_ap.pkl','wb'))
+pickle.dump(pa_list, open('pa_list.pkl','wb'))
+saved_path = './data_preprocess/formal_covid_dict.pkl'
+if os.path.exists(saved_path):
+  os.remove(saved_path)
+pickle.dump(data_dict, open(saved_path,'wb'))
+print ('finish')
 ##
 ###             Xray	
 ###新冠	          111	 
